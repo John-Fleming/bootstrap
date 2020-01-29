@@ -122,8 +122,52 @@ const duckCardCreator = (quackers) => {
 };
 
 
+
+const chooseGender = (e) => {
+    const buttonId = e.target.id;
+    const selectedGender = [];
+    for (let i = 0; i < ducks.length; i++) {
+        if (ducks[i].gender === buttonId) {
+            selectedGender.push(ducks[i]);
+        }
+    } 
+    duckCardCreator(selectedGender);
+};
+
+const chooseRubber = () => {
+    const selectedDuck = [];
+    for (let i = 0; i < ducks.length; i++) {
+        if (ducks[i].isRubber) {
+            selectedDuck.push(ducks[i]);
+        }
+    } 
+    duckCardCreator(selectedDuck);
+};
+
+const chooseColor = (e) => {
+    const buttonId = e.target.id;
+    const filteredDucks = [];
+    for (let i = 0; i < ducks.length; i++) {
+        if (ducks[i].color === buttonId) {
+            filteredDucks.push(ducks[i]);
+        }
+    }
+    duckCardCreator(filteredDucks);
+};
+
+const events = () => {
+    document.getElementById('yellow').addEventListener('click', chooseColor);
+    document.getElementById('blue').addEventListener('click', chooseColor);
+    document.getElementById('white').addEventListener('click', chooseColor);
+    document.getElementById('female').addEventListener('click', chooseGender);
+    document.getElementById('male').addEventListener('click', chooseGender);
+    document.getElementById('rubber').addEventListener('click', chooseRubber);
+};
+
+
 const init = () => {
     duckCardCreator(ducks);
+    events();
 };
 
 init();
